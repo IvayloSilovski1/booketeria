@@ -1,14 +1,21 @@
-// if (process.env.NODE_ENV !== 'production') {
-//   require('dotenv').parse();
-// }
-
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
 const mongoose = require('mongoose');
 const config = require('./database/database');
+const bodyParser = require('body-parser');
 
 const app = express();
+
+mongoose.connect(config.database);
+const db = mongoose.connection;
+db.on('error', error => console.log(error));
+db.once('open', () => console.log(`Connected to mongoose...`));
+
+app.use(bodyParser.urlencoded({
+  limit: '10mb',
+  extended: false
+}));
 
 
 app.set('view engine', 'ejs');
@@ -20,10 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-mongoose.connect(config.database);
-const db = mongoose.connection;
-db.on('error', error => console.log(error));
-db.once('open', () => console.log(`Connected to mongoose...`));
+const authorRouter = require('./routes/authors');
+app.use('/authors', authorRouter);
+
 
 const PORT = process.env.PORT | 3000;
 
