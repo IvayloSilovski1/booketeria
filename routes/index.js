@@ -13,10 +13,7 @@ router.get('/', async (req, res) => {
     books = [];
   }
 
-  res.render('index', {
-    title: 'Main Page',
-    books: books
-  });
+  res.render('index', { books: books });
 });
 
 
