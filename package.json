@@ -17,7 +17,8 @@
     "filepond": "^4.4.0",
     "filepond-plugin-file-encode": "^2.1.4",
     "filepond-plugin-image-preview": "^4.0.8",
-    "filepond-plugin-image-resize": "^2.0.4"
+    "filepond-plugin-image-resize": "^2.0.4",
+    "method-override": "^3.0.0"
   },
   "devDependencies": {
     "body-parser": "^1.18.3",
