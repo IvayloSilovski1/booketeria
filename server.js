@@ -30,6 +30,9 @@ app.use('/', indexRouter);
 const authorRouter = require('./routes/authors');
 app.use('/authors', authorRouter);
 
+const bookRouter = require('./routes/books');
+app.use('/books', bookRouter);
+
 
 const PORT = process.env.PORT | 3000;
 
